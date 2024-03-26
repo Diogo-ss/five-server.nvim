@@ -308,6 +308,8 @@ Documentation for the Five Server commands:
   the setup configuration. Use the `--force` flag to generate another file even
   if one already exists in the current directory.
 
+- `:FiveServer install`: Install Five-Server.
+
 NOTE: The commands will only be available after running setup().
 
 
