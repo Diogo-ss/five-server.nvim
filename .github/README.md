@@ -2,6 +2,10 @@
 
 Integrates Five-Server and Neovim. View dynamic and static pages.
 
+## 🚀 Showcase
+
+<img src="https://i.ibb.co/SXBQdmG/14dadc49-f7db-4e57-8560-e0c6a2935d2b.gif" border="0">
+
 ## ✨ Features:
 
 - Bebug via notify (optional)
