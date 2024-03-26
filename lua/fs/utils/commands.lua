@@ -20,6 +20,8 @@
 ---                        flag to generate another file even if one already
 ---                        exists in the current directory.
 ---
+--- - `:FiveServer install`: Install Five-Server.
+---
 ---NOTE: The commands will only be available after running setup().
 ---
 ---@brief ]]
@@ -51,6 +53,11 @@ M.flags = {
         return
       end
 
+      if flag then
+        logger.logger_warn("Invalid sub flag: " .. flag)
+        return
+      end
+
       process.start()
     end,
   },
@@ -65,14 +72,20 @@ M.flags = {
     ---Stop Job with corresponding ID.
     ---@param id string: The ID of the process to stop.
     execute = function(id)
-      id = tonumber(id) or process.get_path_instance(vim.fn.getcwd())
+      id = id or tostring(process.get_path_instance(vim.fn.getcwd()))
 
-      if not process.job_exists(id) then
-        logger.logger_warn "Job not found"
+      if not id:match "^%d+$" then
+        logger.logger_warn "Invalid ID format"
         return
       end
 
-      process.stop(id)
+      local num_id = tonumber(id)
+      if not num_id or not process.job_exists(num_id) then
+        logger.logger_warn "Invalid or no instance exists with ID"
+        return
+      end
+
+      process.stop(num_id)
     end,
   },
 
@@ -91,7 +104,19 @@ M.flags = {
         return
       end
 
+      if flag then
+        logger.logger_warn("Invalid sub flag: " .. flag)
+        return
+      end
+
       rc.gen_rc()
+    end,
+  },
+
+  ---Install flag.
+  install = {
+    execute = function(_)
+      require "fs.utils.install"()
     end,
   },
 }

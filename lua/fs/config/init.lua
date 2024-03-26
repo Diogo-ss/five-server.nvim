@@ -10,15 +10,15 @@ M.opts = {
   -- configure debug.
   debug = {
     -- enables or disables debug.
-    enabled = true,
+    enabled = false,
     -- log filename.
     file_name = "fs-debug.log",
   },
   -- Five Server bin directory.
   -- if installed globally, use: `bin = "five-server"`
-  bin = vim.fn.stdpath "data" .. "/five-server/node_modules/.bin/five-server",
+  bin = vim.fn.stdpath "data" .. "/fs-plugin/five-server/node_modules/.bin/five-server",
   -- Directory for installing Five Server
-  path = vim.fn.stdpath "data" .. "/five-server",
+  path = vim.fn.stdpath "data" .. "/fs-plugin/five-server",
   -- notifications on the interface.
   notify = true,
   -- configure Five Server RC.
