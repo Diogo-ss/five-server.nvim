@@ -42,7 +42,7 @@ function M.setup(opts)
 
       if has_valid_flag and #args >= 2 then
         local ok, _sub_flags = pcall(commands.flags[args[2]].sub_flags)
-        if ok then
+        if ok and type(_sub_flags) == "table" then
           sub_flags = _sub_flags
         end
       end

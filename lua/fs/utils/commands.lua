@@ -94,6 +94,13 @@ M.flags = {
       rc.gen_rc()
     end,
   },
+
+  install = {
+    execute = function(_)
+      require "fs.utils.install"()
+    end
+  }
+
 }
 
 ---Filters flags based on a leading argument.
