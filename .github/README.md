@@ -103,6 +103,4 @@ All commands use auto complete, allowing you to use flags to change their behavi
 `:FiveServer stop <id>`: enter the ID of the instance to be stopped (all valid IDs will be provided). </br>
 `:FiveServer gen_rc`: generates a config file based on the user configuration. </br>
 `:FiveServer gen_rc --force`: generates a config file based on the user options. If a config already exists, it will be overwritten. </br>
-
-
-
+`:FiveServer install`: install the five-server client using NPM or PNPM.
