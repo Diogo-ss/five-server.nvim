@@ -53,8 +53,8 @@ function M.setup(opts)
         return commands.flag_filter(lead_arg, flags)
       elseif #args == 2 and has_valid_flag and has_space then
         return sub_flags
-      elseif #args == 3 and has_valid_flag and not has_space then
-        return commands.filter(lead_arg, sub_flags)
+      elseif #args == 3 and has_valid_flag and not has_space and not vim.tbl_isempty(sub_flags) then
+        return commands.flag_filter(lead_arg, sub_flags)
       end
     end,
   })
