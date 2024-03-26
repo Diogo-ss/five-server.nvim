@@ -1,0 +1,49 @@
+name: tests
+
+on:
+  push:
+    branches-ignore:
+      - main
+    paths:
+      - "lua/**/*.lua"
+  pull_request:
+    paths:
+      - "lua/**/*.lua"
+  workflow_call:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Luacheck linter
+        uses: lunarmodules/luacheck@v1
+        with:
+          args: lua/*
+
+      - name: Stylua check
+        uses: JohnnyMorganz/stylua-action@v4
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          version: latest
+          args: --color always --check lua/
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install neovim
+        uses: MunifTanjim/setup-neovim-action@v1
+
+      - name: Install Plenary and Tree-Sitter-Lua
+        run: |
+          git clone --depth 1 https://github.com/nvim-lua/plenary.nvim ~/.local/share/nvim/site/pack/vendor/start/plenary.nvim
+          git clone --depth 1 https://github.com/tjdevries/tree-sitter-lua ~/.local/share/nvim/site/pack/vendor/start/tree-sitter-lua
+          ln -s $(pwd) ~/.local/share/nvim/site/pack/vendor/start
+
+      - name: Run Tests
+        run: make tests

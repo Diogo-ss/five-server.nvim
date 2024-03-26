@@ -1,0 +1,332 @@
+================================================================================
+SETUP                                                         *fiveserver.setup*
+
+This module is responsible for configuring the Five Server Plugin based on user
+options.
+
+To apply your options: `require("fs").setup({})`
+
+
+M.setup({opts})                                                    *M.setup()*
+    Applies the user options and creates the `FiveServer` command.
+
+
+    Parameters: ~
+        {opts} (table)  options for configuring the plugin.
+
+
+
+================================================================================
+RC                                                               *fiveserver.rc*
+
+This module is responsible for managing fiveserverrc. It can generate a
+configuration file based on the pluguin configuration and also check its
+existence.
+
+To use: `require "fs.utils.rc"`
+
+
+M.has_rc({path})                                                  *M.has_rc()*
+    Checks if the fiveserverrc file exists.
+
+
+    Parameters: ~
+        {path} (string|nil)  path to check for the existence of the
+                             fiveserverrc.
+
+    Return: ~
+        boolean: true if the fiveserverrc file exists; otherwise, false.
+
+
+M._gen_rc({path})                                                *M._gen_rc()*
+    Write in fiveserverrc.
+
+
+    Parameters: ~
+        {path} (string)  full file PATH
+
+
+M.gen_rc({path}, {force})                                         *M.gen_rc()*
+    Generate fiveserverrc file.
+
+
+    Parameters: ~
+        {path}  (string|nil)   path to generate the fiveserverrc file.
+        {force} (boolean|nil)  if true, force the generation of the
+                               fiveserverrc file even if it already exists.
+
+
+
+================================================================================
+DEBUG                                                         *fiveserver.debug*
+
+This module is responsible for debug. Responsible for saving the log in a
+variable and also in a file. It can be called using like:
+
+To use: `require "fs.utils.debug"`
+
+
+M.CLEAN_DEBUG()                                              *M.CLEAN_DEBUG()*
+    Ensures that the debug has been cleared
+
+
+
+M.LOGS_HISTORY()                                            *M.LOGS_HISTORY()*
+    History of logs.
+
+
+
+M.write_log({contents}, {path}, {mode})                        *M.write_log()*
+    Writes contents to a file.
+
+
+    Parameters: ~
+        {contents} (string)  The contents to write to the file.
+        {path}     (string)  file PATH.
+        {mode}     (string)  mode to open the file in ("w+" for write, "a+"
+                             for append).
+
+
+M.save_log({log_type}, {message})                               *M.save_log()*
+    Saves a log message.
+
+
+    Parameters: ~
+        {log_type} (string)  log type.
+        {message}  (string)  message.
+
+
+M.debug_log({log_type}, {message})                             *M.debug_log()*
+    Send a message to the log
+
+
+    Parameters: ~
+        {log_type} (string)  log type.
+        {message}  (string)  message.
+
+
+
+================================================================================
+LOGGER                                                       *fiveserver.logger*
+
+This module is responsible for logging messages, sending notifications and
+handling output from the Five Server
+
+To use: `require "fs.utils.logger"`
+
+
+M.level_to_str({level})                                     *M.level_to_str()*
+    Converts a vim.log.level to string representation.
+
+
+    Parameters: ~
+        {level} (number)  the vim.log.level.
+
+    Return: ~
+        string: string representation of vim.log.level.
+
+
+M._handle_data({data}, {level})                             *M._handle_data()*
+    Handles data. Remove ANSI color Trimming text
+
+
+    Parameters: ~
+        {data}  (table)   Job output data
+        {level} (number)  log level.
+
+
+M.logger({message}, {level})                                      *M.logger()*
+    Send a notification.
+
+
+    Parameters: ~
+        {message} (string)  message.
+        {level}   (number)  the vim.log.level.
+
+
+M.logger_warn({message})                                     *M.logger_warn()*
+    Send a warning notification.
+
+
+    Parameters: ~
+        {message} (string)  message.
+
+
+M.logger_info({message})                                     *M.logger_info()*
+    Send an informational notification.
+
+
+    Parameters: ~
+        {message} (string)  message.
+
+
+M.logger_error({message})                                   *M.logger_error()*
+    Send an error notification.
+
+
+    Parameters: ~
+        {message} (string)  message.
+
+
+M.handle_stdout({data})                                    *M.handle_stdout()*
+    Handles output messages.
+
+
+    Parameters: ~
+        {data} (table)  output data.
+
+
+M.handle_stderr({data})                                    *M.handle_stderr()*
+    Handles error messages.
+
+
+    Parameters: ~
+        {data} (table)  error data.
+
+
+
+================================================================================
+PROCESS                                                     *fiveserver.process*
+
+This module is responsible for managing the Five Server instances.
+
+To use: `require "fs.utils.process"`
+
+
+M.PROCESS_LIST()                                            *M.PROCESS_LIST()*
+    List of processes
+
+
+
+M.add_process({path}, {job_id}, {command})                   *M.add_process()*
+    Adds a process to the process list.
+
+
+    Parameters: ~
+        {path}    (string)  path associated with the process.
+        {job_id}  (number)  job ID associated with the process.
+        {command} (string)  command used.
+
+
+M.path_has_instance({path})                            *M.path_has_instance()*
+    Checks if a path has an associated instance.
+
+
+    Parameters: ~
+        {path} (string)  path to check.
+
+    Return: ~
+        boolean: path associated with the instance.
+
+
+M.get_path_instance({path})                            *M.get_path_instance()*
+    Returns the first Job ID found that is associated with the PATH.
+
+
+    Parameters: ~
+        {path} (string)  path to check.
+
+    Return: ~
+        number|nil: job ID associated with the path, or nil if no match is
+        found.
+
+
+M.job_exists({id})                                            *M.job_exists()*
+    Checks if a Job exists through the process list.
+
+
+    Parameters: ~
+        {id} (number)  job ID to check.
+
+    Return: ~
+        boolean: true if the job exists, and false otherwise.
+
+
+M.get_process({id})                                          *M.get_process()*
+    Gets the process associated with a job ID.
+
+
+    Parameters: ~
+        {id} (number)  job ID.
+
+    Return: ~
+        table|nil: returns the process if it exists, or nil otherwise.
+
+
+M._start_fs({command})                                         *M._start_fs()*
+    Internal function to start the Five Server process.
+
+
+    Parameters: ~
+        {command} (string)  command to start the Five Server process.
+
+    Return: ~
+        number: job ID if started.
+
+
+M.remove_process({id})                                    *M.remove_process()*
+    Removes a process from the process list.
+
+
+    Parameters: ~
+        {id} (number)  ID of the process to remove.
+
+    Return: ~
+        boolean: return true If the removal was successful, or false
+        otherwise.
+
+
+M.start()                                                          *M.start()*
+    Starts the Five Server process.
+
+
+
+M.stop({id})                                                        *M.stop()*
+    Stop a process using the Job ID.
+
+
+    Parameters: ~
+        {id} (number)  ID of the process to stop.
+
+
+
+================================================================================
+COMMANDS                                                   *fiveserver.commands*
+
+Documentation for the Five Server commands:
+
+- `:FiveServer start`: Start an instance of the five server. You can use the
+  `--force` flag to start an instance in the current directory, even if one
+  already exists.
+
+- `:FiveServer stop`: Stop an instance in the current directory. It is possible
+  to stop another instance of a different directory from the current one, just
+  pass the id as an argument, and you can select an instance that will be
+  listed on the command line.
+
+- `:FiveServer gen_rc`: Generate a configuration file (fiveserverrc) based on
+  the setup configuration. Use the `--force` flag to generate another file even
+  if one already exists in the current directory.
+
+NOTE: The commands will only be available after running setup().
+
+
+M.flags()                                                          *M.flags()*
+    Table containing flags and their corresponding functions.
+
+
+
+M.flag_filter({lead_arg}, {flags})                           *M.flag_filter()*
+    Filters flags based on a leading argument.
+
+
+    Parameters: ~
+        {lead_arg} (string)  The leading argument to filter flags.
+        {flags}    (table)   flags Table containing flags to filter.
+
+    Return: ~
+        table: Filtered flags based on the leading argument.
+
+
+
+ vim:tw=78:ts=8:ft=help:norl:
