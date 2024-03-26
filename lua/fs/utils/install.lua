@@ -18,6 +18,11 @@ end
 local function install(path)
   path = path or config.opts.path
 
+  if vim.fn.executable(config.opts.bin) == 1 then
+    logger.logger_info "Five-Server is ready to use."
+    return
+  end
+
   local package_managers = vim.tbl_filter(function(val)
     return vim.fn.executable(val) == 1
   end, { "npm", "pnpm" })
