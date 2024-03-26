@@ -16,9 +16,9 @@ M.opts = {
   },
   -- Five Server bin directory.
   -- if installed globally, use: `bin = "five-server"`
-  bin = vim.fn.stdpath("data") .. "/five-server/node_modules/.bin/five-server",
+  bin = vim.fn.stdpath "data" .. "/five-server/node_modules/.bin/five-server",
   -- Directory for installing Five Server
-  path = vim.fn.stdpath("data") .. "/five-server",
+  path = vim.fn.stdpath "data" .. "/five-server",
   -- notifications on the interface.
   notify = true,
   -- configure Five Server RC.

@@ -31,7 +31,12 @@ function M._gen_rc(path)
   if f then
     f:write(rc_json)
     f:close()
-    logger.logger_info(("Fiveserverrc generated in `%s`.\nLearn more: %s"):format(path, "https://github.com/yandeu/five-server/blob/main/src/types.ts"))
+    logger.logger_info(
+      ("Fiveserverrc generated in `%s`.\nLearn more: %s"):format(
+        path,
+        "https://github.com/yandeu/five-server/blob/main/src/types.ts"
+      )
+    )
     return
   end
   logger.logger_error "Error while trying to generate fiveserverrc"
