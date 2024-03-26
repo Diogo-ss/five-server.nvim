@@ -2,12 +2,12 @@ local config = require "fs.config"
 local logger = require "fs.utils.logger"
 
 local function cmd(command)
-  logger.logger_info("starting installation with: " .. tostring(command[1]))
+  logger.logger_info("Starting installation with: " .. tostring(command[1]))
 
   vim.fn.jobstart(command, {
     on_exit = function(_, code)
       if code ~= 0 then
-        logger.logger_error("error when trying to install with: " .. table.concat(command, " "))
+        logger.logger_error("Error when trying to install with: " .. table.concat(command, " "))
       else
         logger.logger_info "Five Server was installed."
       end
