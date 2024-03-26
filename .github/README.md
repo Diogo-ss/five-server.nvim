@@ -4,12 +4,12 @@ Integrates Five-Server and Neovim. View dynamic and static pages.
 
 ## ✨ Features:
 
-- Debugging by notifications (optional)
+- Bebug via notify (optional)
 - Log file (optional)
 - Supports fiveserverrc
-- automatic installation with NPM or PNPM
-- no global installation required
-- multiple instances in a single neovim session
+- Automatic installation with NPM or PNPM
+- No global installation required
+- Multiple instances in a single Neovim session
 
 ## 🎯 Requirements
 
@@ -45,7 +45,7 @@ These are the standard options. Change them according to your needs.
   -- configure debug.
   debug = {
     -- enables or disables debug.
-    enabled = true,
+    enabled = false,
     -- log filename.
     file_name = "fs-debug.log",
   },
@@ -67,12 +67,11 @@ These are the standard options. Change them according to your needs.
       -- RC filename (not recommended to change).
       path = ".fiveserverrc",
     },
-    -- settings to be saved in Five Server RC.
+    -- settings to be saved in Five-Server RC.
     -- the key name and value will be used.
     config = {
       -- set the server port.
       port = 5500,
-
       -- the output level.
       logLevel = 3,
 

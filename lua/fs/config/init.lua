@@ -10,7 +10,7 @@ M.opts = {
   -- configure debug.
   debug = {
     -- enables or disables debug.
-    enabled = true,
+    enabled = false,
     -- log filename.
     file_name = "fs-debug.log",
   },

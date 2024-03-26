@@ -49,11 +49,7 @@ function M.gen_rc(path, force)
   path = path or config.opts.fiveserverrc.gen_rc.path
 
   if M.has_rc(path) and not force then
-    local response = vim.fn.input "There is already a fiveserverrc. Would you like to generate another one? [y/N]: "
-    if response:lower() ~= "y" then
-      logger.logger_warn "Operation canceled."
-      return
-    end
+    return
   end
 
   M._gen_rc(path)
