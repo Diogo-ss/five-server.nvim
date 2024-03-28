@@ -39,6 +39,23 @@ Integrates Five-Server and Neovim. View dynamic and static pages.
   end,
 }
 ```
+### Packer.nvim
+
+```lua
+use {
+  "Diogo-ss/five-server.nvim",
+  cmd = { "FiveServer" },
+  run = function()
+    require "fs.utils.install"()
+  end,
+  config = function()
+    require("fs").setup({
+    notify = true,
+    -- add other options
+  })
+  end
+}
+```
 
 ## ⚙ options
 
